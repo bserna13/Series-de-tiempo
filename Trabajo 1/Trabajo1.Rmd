@@ -1,0 +1,146 @@
+---
+title: "Trabajo1"
+author: "None"
+date: "2023-03-17"
+output: pdf_document
+---
+
+# 1er punto 
+## a)
+
+```{r,warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(hrbrthemes)
+generador <- function(cedula){
+set.seed(cedula)
+data <- rnorm(100)
+data
+}
+times <- seq(1,100)
+values <- generador(1007396943)
+Datos = data.frame(times,values)
+# Most basic bubble plot
+p <- ggplot(Datos, aes(x=times, y=values)) +
+geom_line( color="steelblue") +
+geom_point() +
+xlab("") +
+theme_ipsum() +
+theme(axis.text.x=element_text(angle=60, hjust=1))
+p
+```
+## b)
+
+```{r}
+library(stats)
+
+acf(Datos$values)
+pacf(Datos$values)
+
+
+```
+
+# 2 punto 
+## a)
+
+ Considere este proceso estacionario de media movil de orden 1 (MA(1)) 
+ Z(t) = 0.9a(t-1) + a(t)
+ 
+```{r}
+a = Datos$values
+# iniciando z#
+z <- a
+for (t in 2:100){
+  z[t] <- 0.9 * a[t - 1] + a[t]
+}
+
+```
+
+Graficando la trayectoria del proceso
+
+```{r,warning=FALSE}
+values2 <- z
+Datos2 <- data.frame(times,values2)
+
+p <- ggplot(Datos, aes(x=times, y=values2)) +
+geom_line( color="red") +
+geom_point() +
+xlab("") +
+theme_ipsum() +
+theme(axis.text.x=element_text(angle=60, hjust=1))
+p
+```
+ Considere este otro proceso estacionario de media movil de orden 1 (MA(1)) 
+ Z(t) = -0.75a(t-1) + a(t)
+
+```{r}
+a = Datos$values
+# iniciando z#
+z2 <- a
+for (t in 2:100){
+  z2[t] <- -0.75 * a[t - 1] + a[t]
+}
+```
+
+Graficando las realizaciones del proceso:
+
+```{r,warning=FALSE}
+values3 <- z2
+Datos3 <- data.frame(times,values3)
+
+p <- ggplot(Datos3, aes(x=times, y=values3)) +
+geom_line( color="red") +
+geom_point() +
+xlab("") +
+theme_ipsum() +
+theme(axis.text.x=element_text(angle=60, hjust=1))
+p
+
+```
+
+# b)
+
+## ACF y PACF del primer proceso:
+
+```{r}
+
+acf(Datos2$values2)
+pacf(Datos2$values2)
+
+```
+
+## ACF y PACF del segundo proceso:
+
+
+```{r}
+acf(Datos3$values3)
+pacf(Datos3$values3)
+
+```
+
+# C)
+
+## 1er grafico:
+
+```{r}
+plot(Datos$values,Datos2$values2, main = "Diagrama de Dispersión", 
+     xlab = "Variable X", ylab = "Variable Y")
+```
+
+## 2do grafico
+
+```{r}
+plot(Datos$values, Datos2$values2, main = "Diagrama de Dispersión", 
+     xlab = "Variable X", ylab = "Variable Y")
+```
+
+
+
+
+
+
+
+
+
+
+
