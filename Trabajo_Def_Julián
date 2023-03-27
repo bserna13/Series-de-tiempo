@@ -232,23 +232,15 @@ proceso3 <- sapply(vector_ts1,funcion3)
 ```
 
 
-```{r}
-p <- ggplot(Datos, aes(x=times, y=z)) +
-geom_line( color="steelblue") +
-geom_point() +
-xlab("Tiempo") 
-p
-```
-
 ### Literal b:
 
 
 ```{r}
-acf(z, col = "2", main = "")
+acf(proceso3, col = "2", main = "")
 ```
 
 ```{r}
-pacf(z, col = "2", main = "")
+pacf(proceso3, col = "2", main = "")
 ```
 
 
