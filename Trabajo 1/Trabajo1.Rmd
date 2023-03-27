@@ -221,10 +221,15 @@ plot(zt_2, zt, xlab = "Z_{t-2}", ylab = "Z_{t}")
 Considerando del primer punto la información correspondiente al ruido blanco 
 𝑎𝑡, Se procede a construir el proceso autorregresivo AR(2).
 
+La ecuación del modelo AR(2) a utilizar es: 
+
+$$
+\\
+Z_{t}=\ 0.1z_{t-1} - 0.5z_{t-2} + a_{t}
+$$
 
 ```{r}
 
-#z(t) = 0.1z(t-1) - 0.5z(t-2)+ a(t)
 a = Datos$values
 z <- a
 z <- rep(0,100)
@@ -269,7 +274,7 @@ plot(z,lag(z,n=1), xlab="Zt", ylab="Zt-1", main= "Gráfico de dispersión Zt vs 
 
 
 
-plot(z,lag(z,n=2), xlab="Zt", ylab="Zt-1", main= "Gráfico de dispersión Zt vs Zt-2", col= "blue")
+plot(z,lag(z,n=2), xlab="Zt", ylab="Zt-2", main= "Gráfico de dispersión Zt vs Zt-2", col= "blue")
 
 ```
 
