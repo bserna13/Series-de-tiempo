@@ -229,4 +229,4 @@ ru_dif_tz=ur.df(diff(serie_transf), type = c("drift"), lags=maxlag, selectlags =
 summary(ru_dif_tz)
 ```
 
-
+hola soy natas
