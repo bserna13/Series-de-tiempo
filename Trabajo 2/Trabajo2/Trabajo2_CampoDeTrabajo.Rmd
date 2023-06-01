@@ -204,8 +204,31 @@ abline(a=-3, b=0)
 abline(a=3, b=0)
 ```
 
-Con el grafico anterior corrobaramos lo anterior dicho
+Con el grafico anterior corrobaramos lo anterior dicho.
 
+Bajo la hipótesis de normalidad el número esperado A de observaciones atípicas es:
+
+```{r}
+(Nobs_Esp=round(length(datos_ts)*2*pnorm(-3, mean = 0, sd = 1, lower.tail = TRUE)))
+```
+Se detectan las observaciones atípicas
+```{r}
+ind=(abs(res1_est)>3.0)
+sum(ind)
+```
+Se verifica la normalidad de los residuales con un q-q plot
+```{r}
+qqnorm(res1_est, xlab = "Cuantiles Te?ricos", ylab = "Cuantiles Muestrales",
+xlim=c(-4,4), ylim=c(-4,4))
+qqline(res1_est)
+```
+
+```{r}
+shapiro.test(res1_est)
+```
+```{r}
+normalTest(res1_est, method=("ks"))
+```
 
 
 
