@@ -2,7 +2,9 @@
 title: "Trabajo 2 - Series de tiempo"
 author: "Julián Saavedra"
 date: "2023-05-27"
-output: html_document
+output:
+  pdf_document: default
+  pdf: default
 ---
 
 ```{r setup, include=FALSE}
@@ -76,7 +78,7 @@ Se selecciona la estimacion de lambda del metododo "guerrero" el cual es aproxim
 
 
 
-Vamos entonces a transformar la serie, utilizando la raiz cuarta:
+Vamos entonces a transformar la serie, utilizando la raíz cuarta:
 
 ```{r}
 plot.ts(datos_ts^(.43) ,main = " Serie transformada",ylab = "X_t", xlab = "time", type = "o",col='blue', lwd = 1 )
@@ -119,7 +121,7 @@ El análisis de la PACF parece indicar que hay decaimiento exponencial
 tanto en los rezagos no estacionales como estacionales; por su parte la ACF señala
 que hay un corte después del primer rezago.
 
-*Por lo anterior el modelo que propongo es un ARIMA(0,1,1)*
+Por lo anterior el modelo que propongo es un ARIMA(0,1,1)
 
 
 # Punto B.
@@ -143,10 +145,8 @@ Así, se tiene el test:
 adf.test(datos_ts^0.43, alternative = "stationary")
 ```
 
-Por lo que no hay información suficiente para rechazar la hipótesis nula $$H_0$$ y confirmamos que nuestra serie inicial NO es estacionaria.
 
-
-Podemos rechazar $$H_0$$, ya que $$\alpha=0.05>p-value=0.01$$ y esto significa que NO existe una raíz unitaria en el modelo.
+No se rechazar $$H_0$$, ya que $$\alpha=0.05<p-value=0.01$$ y esto significa que existe una o más raíces unitarias en la serie.
 
 
 - Como esta serie no es estacionaria debemos convertirla a estacionaria, podemos hacerlo con diferencias o logaritmos. En nuestro caso, vamos a trabajar con diferencias.
@@ -177,7 +177,9 @@ summary(ru_tz)
 mod1_CSS_ML=Arima(datos_ts, c(0, 1, 1), include.drift=TRUE, lambda=.43, method = c("CSS-ML"))
 summary(mod1_CSS_ML)
 ```
-(1-b)*Zt^0.43 = (I+0.6595b)at + 0.2562   -> Modelo
+El modelo con los parametros estimados seria el siguiente:
+
+(1-b)*Zt^0.43 = (I+0.6595b)at + 0.2562
 
 
 ## Punto E
@@ -226,17 +228,20 @@ qqline(res1_est)
 ```{r}
 shapiro.test(res1_est)
 ```
-```{r}
-normalTest(res1_est, method=("ks"))
-```
 
 
+No se cumple el test de normalidad de Shapiro-Wilk y esto se corrobora con la gráfica donde los cuantiles Teóricos no contienen bien a los cuantiles Muéstrales, por tanto no se puede hacer observaciones de los datos atipicos con la distribución normal.
 
 
+# Punto F
+## ¿La tendencia de la serie posee componentes deterministica y aleatoria, solo una de ellas (cúal) o ambas?.
+
+Las componentes de una serie temporal pueden ser de naturaleza determinista o aleatoria. En el caso de la tendencia de la serie analizada y la forma en que se integra, se determina que se trata de una serie con componentes aleatorios y al mismo tiempo deterministicos, pues se utilizan modelos autorregresivos- medias moviles para el modelamiento en la serie temporal, ademas de ser no estacionario y tener la presencia de una raiz unitaria en el componente autorregresivo del proceso generado, 
+
+## ¿El proceso adecuado para modelar la serie se trata de un proceso estacionario en tendencia o un proceso de diferencias estacionarias?
 
 
-
-
+El proceso adecuado para modelar la serie se trata de un proceso de diferencias estacionarias, pues  la serie de tiempo muestra una variabilidad que cambia a lo largo del tiempo, siendo un proceso no estacionario cuya no estacionaridad esta motivada por la presencia de raices unitarias. 
 
 
 
