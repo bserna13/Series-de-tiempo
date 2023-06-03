@@ -129,24 +129,19 @@ Por lo anterior el modelo que propongo es un ARIMA(0,1,1)
 ```{r}
 auto.arima(datos_ts^0.43,max.p=5,max.q=5)
 ```
-Observe que efectivamente se estima que es un modelo ARIMA(0,1,1) :D
-
+Observe que efectivamente se estima que es un modelo ARIMA(0,1,1)
 
 
 # Punto C
 
 De igual manera, realicemos una prueba de Dickey- Fuller para confirmar que no hay estacionariedad en la serie original, para esta prueba estamos ante el siguiente juego de hipótesis:
 
-$$H_0:\text{La serie no es estacionaria}\hspace{0.5cm}vs.\hspace{0.5cm}H_1:\text{La serie es estacionaria}$$
 
 Así, se tiene el test:
 
 ```{r}
 adf.test(datos_ts^0.43, alternative = "stationary")
 ```
-
-
-No se rechazar $$H_0$$, ya que $$\alpha=0.05<p-value=0.01$$ y esto significa que existe una o más raíces unitarias en la serie.
 
 
 - Como esta serie no es estacionaria debemos convertirla a estacionaria, podemos hacerlo con diferencias o logaritmos. En nuestro caso, vamos a trabajar con diferencias.
@@ -245,48 +240,6 @@ El proceso adecuado para modelar la serie se trata de un proceso de diferencias 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```{r}
-resid=ru_tz@testreg$residuals # residuales del modelo ADF
-plot(ru_tz)
-```
 
 
 

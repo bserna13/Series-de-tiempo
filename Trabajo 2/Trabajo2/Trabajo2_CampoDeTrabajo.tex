@@ -494,7 +494,7 @@ Por lo anterior el modelo que propongo es un ARIMA(0,1,1)
 ## AIC=399.5   AICc=399.72   BIC=407.68
 \end{verbatim}
 
-Observe que efectivamente se estima que es un modelo ARIMA(0,1,1) :D
+Observe que efectivamente se estima que es un modelo ARIMA(0,1,1)
 
 \hypertarget{punto-c}{%
 \section{Punto C}\label{punto-c}}
@@ -502,8 +502,6 @@ Observe que efectivamente se estima que es un modelo ARIMA(0,1,1) :D
 De igual manera, realicemos una prueba de Dickey- Fuller para confirmar
 que no hay estacionariedad en la serie original, para esta prueba
 estamos ante el siguiente juego de hipótesis:
-
-\[H_0:\text{La serie no es estacionaria}\hspace{0.5cm}vs.\hspace{0.5cm}H_1:\text{La serie es estacionaria}\]
 
 Así, se tiene el test:
 
@@ -521,9 +519,6 @@ Así, se tiene el test:
 ## Dickey-Fuller = -1.7134, Lag order = 4, p-value = 0.6956
 ## alternative hypothesis: stationary
 \end{verbatim}
-
-No se rechazar \[H_0\], ya que \[\alpha=0.05<p-value=0.01\] y esto
-significa que existe una o más raíces unitarias en la serie.
 
 \begin{itemize}
 \tightlist
@@ -823,14 +818,5 @@ diferencias estacionarias, pues la serie de tiempo muestra una
 variabilidad que cambia a lo largo del tiempo, siendo un proceso no
 estacionario cuya no estacionaridad esta motivada por la presencia de
 raices unitarias.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{resid}\OtherTok{=}\NormalTok{ru\_tz}\SpecialCharTok{@}\NormalTok{testreg}\SpecialCharTok{$}\NormalTok{residuals }\CommentTok{\# residuales del modelo ADF}
-\FunctionTok{plot}\NormalTok{(ru\_tz)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{Trabajo2_CampoDeTrabajo_files/figure-latex/unnamed-chunk-27-1.pdf}
 
 \end{document}
