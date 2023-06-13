@@ -230,3 +230,30 @@ matriz_pronosticos <-data.frame(pronostico$mean,pronostico$lower,
                                 pronostico$upper)
 matriz_pronosticos
 ```
+## Punto 3
+
+```{r}
+
+#view(unemp)
+```
+A continuación, calculamos la previsión a 12 meses con un intervalo de confianza de 0,95 y trazamos el pronóstico junto con los valores reales y ajustados.
+
+```{r}
+hw <- HoltWinters(unemp)
+
+# Obtener los valores óptimos de alpha, beta y gamma
+alpha_optimo <- hw$alpha
+beta_optimo <- hw$beta
+gamma_optimo <- hw$gamma
+
+# Imprimir los valores óptimos
+cat("Alpha óptimo:", alpha_optimo, "\n")
+cat("Beta óptimo:", beta_optimo, "\n")
+cat("Gamma óptimo:", gamma_optimo, "\n")
+
+# Realizar el pronóstico
+forecast <- predict(hw, n.ahead = 12, prediction.interval = TRUE, level = 0.95)
+
+# Visualizar los resultados
+plot(hw, forecast)
+```
