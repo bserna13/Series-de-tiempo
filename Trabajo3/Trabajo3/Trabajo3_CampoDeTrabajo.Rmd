@@ -257,3 +257,4 @@ forecast <- predict(hw, n.ahead = 12, prediction.interval = TRUE, level = 0.95)
 # Visualizar los resultados
 plot(hw, forecast)
 ```
+Podemos observar que los valores de $\alpha$ óptimo: 0.8590901, $\beta$ óptimo: 0.07395703, $\gamma$ óptimo: 1.
