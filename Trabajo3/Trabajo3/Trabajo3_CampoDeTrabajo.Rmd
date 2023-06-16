@@ -268,3 +268,29 @@ print(forecast)
 
 ```
 En promedio, los pronósticos realizados por el modelo Holt-Winters difieren de los valores reales en aproximadamente 24.2834 unidades.
+
+
+
+#Punto 4
+
+Ahora, para comparar el pronostico transformado y el pronostico utilizando Holt-winters, se realiza un summary en donde se arrojen los pronosticos RMSE, MAE Y MAPE, las cuales ayudaran a la hora de evaluar cual es mas preciso en terminos de error absoluto y error relativo. 
+
+a continuacion, los datos del pronostico transformado:
+
+```{r}
+summary(pronostico)
+```
+
+luego, los datos del pronostico utilizando Holt-winters
+
+```{r}
+summary(forecast)
+```
+
+Resultado para el pronostico transformado incialmente
+RMSE= 0,05231761, MAE= 0,03932498, MAPE= 144,5645
+
+Resultado para el pronostico utilizando Holt-winters
+RMSE= 24,28341, MAE= 19,04696, MAPE=5.344272
+
+según los datos arrojados para ambos pronosticos, el que resulta ser mas preciso es el pronostico con transformación inicialmente propuesto, pues el RMSE, el MAE y el MAPE son menores y es considerado mas preciso en terminos de estimacion del valor real  en comparacion al pronostico Holt- Winters, es por esa razon, que se decide seguir utilizando el modelo inicial. 
