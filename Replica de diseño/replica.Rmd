@@ -1,0 +1,20 @@
+---
+title: "Replica experimento"
+author: "Brahian Serna"
+date: "2023-11-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+datos <- read.csv("datos.csv",sep = ",")
+```
+
+```{r}
+plot(datos$Temperature..C.,datos$Time.min..)
+```
+
